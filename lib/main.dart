@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:first_praktice_safed_application/src/features/home/ui/screens/main_screen.dart';
+import 'package:first_praktice_safed_application/src/app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runZonedGuarded(
-    () => runApp(const MainScreen()),
+    () => runApp(const App()),
     (e, stackTrace) => log('e: $e, stackTrace: $stackTrace'),
   );
 }

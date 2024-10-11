@@ -1,10 +1,10 @@
 import 'package:first_praktice_safed_application/src/features/home/ui/widgets/main_screen_body.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/strings.dart';
+import 'common/strings.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
