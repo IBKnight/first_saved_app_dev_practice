@@ -3,6 +3,7 @@ import 'package:first_praktice_safed_application/src/common/paddings.dart';
 import 'package:first_praktice_safed_application/src/common/strings.dart';
 import 'package:first_praktice_safed_application/src/features/home/logic/file_worker.dart';
 import 'package:first_praktice_safed_application/src/features/home/logic/json_worker.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class JsonWorkScreen extends StatefulWidget {
@@ -37,23 +38,17 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
         child: Center(
           child: Column(
             children: [
+              const Text(Strings.jsonFields),
+             const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(Strings.name),
-                  SizedBox(
-                    height: 30,
-                    width: 100,
-                    child: TextField(
-                      controller: _nameController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 8),
-                        border: OutlineInputBorder(),
-                        hintText: Strings.name,
-                      ),
-                      maxLines: null,
-                    ),
-                  ),
+                  const SizedBox(width: 8),
+                  CustomTextField(
+                    textController: _nameController,
+                    hintText: Strings.name,
+                  )
                 ],
               ),
               const SizedBox(height: 8),
@@ -61,18 +56,10 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(Strings.age),
-                  SizedBox(
-                    height: 30,
-                    width: 100,
-                    child: TextField(
-                      controller: _ageController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 8),
-                        border: OutlineInputBorder(),
-                        hintText: Strings.age,
-                      ),
-                      maxLines: null,
-                    ),
+                  const SizedBox(width: 8),
+                  CustomTextField(
+                    textController: _ageController,
+                    hintText: Strings.age,
                   ),
                 ],
               ),
@@ -91,7 +78,7 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
               padding32,
               OutlinedButton(
                 onPressed: () {
-                  _futureResult.value = FileWorker.readFile(
+                  _futureResult.value = JsonWorker.readJsonFile(
                     fileName: AppConfig.kDefaultJSONFileName,
                   );
                 },

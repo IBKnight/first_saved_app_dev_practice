@@ -2,6 +2,7 @@ import 'package:first_praktice_safed_application/src/common/strings.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/file_system_info_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/file_work_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/json_work_screen.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/screens/xml_work_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,11 @@ class _MainScreenBodyState extends State<MainScreenBody> {
             NavigateButton(
               buttonTitle: Strings.jsonWorkerScreen,
               screen: JsonWorkScreen(),
+            ),
+            SizedBox(height: 32),
+            NavigateButton(
+              buttonTitle: Strings.xmlWorkerScreen,
+              screen: XmlWorkScreen(),
             ),
             SizedBox(height: 32),
           ],
