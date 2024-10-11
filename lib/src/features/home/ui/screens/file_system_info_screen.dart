@@ -12,12 +12,15 @@ class FileSystemInfoScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Strings.fileSystemScreen),
       ),
-      body: Center(
-        child: FutureBuilder(
-          future: FileSystemChecker().getDiskInfo(),
-          builder: (context, snapshot) {
-            return Text('${snapshot.data}');
-          },
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          child: FutureBuilder(
+            future: FileSystemChecker.getDiskInfo(),
+            builder: (context, snapshot) {
+              return Text('${snapshot.data}');
+            },
+          ),
         ),
       ),
     );

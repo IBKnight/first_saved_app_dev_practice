@@ -1,5 +1,8 @@
 import 'package:first_praktice_safed_application/src/common/strings.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/file_system_info_screen.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/screens/file_work_screen.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/screens/json_work_screen.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
 class MainScreenBody extends StatefulWidget {
@@ -27,36 +30,18 @@ class _MainScreenBodyState extends State<MainScreenBody> {
             ),
             SizedBox(height: 32),
             NavigateButton(
-              buttonTitle: Strings.fileSystemScreen,
-              screen: FileSystemInfoScreen(),
+              buttonTitle: Strings.fileWorkerScreen,
+              screen: FileWorkScreen(),
+            ),
+            SizedBox(height: 32),
+            NavigateButton(
+              buttonTitle: Strings.jsonWorkerScreen,
+              screen: JsonWorkScreen(),
             ),
             SizedBox(height: 32),
           ],
         ),
       ),
-    );
-  }
-}
-
-class NavigateButton extends StatelessWidget {
-  const NavigateButton({
-    required this.screen,
-    required this.buttonTitle,
-    super.key,
-  });
-
-  final Widget screen;
-  final String buttonTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (ctx) => screen,
-        ),
-      ),
-      child: Text(buttonTitle),
     );
   }
 }

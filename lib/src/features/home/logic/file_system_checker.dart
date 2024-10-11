@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 class FileSystemChecker {
-  Future<String> getDiskInfo() async {
+  static Future<String> getDiskInfo() async {
     if (Platform.isWindows) {
       return await _getWindowsDiskInfo();
     } else if (Platform.isLinux || Platform.isMacOS) {
@@ -12,7 +12,7 @@ class FileSystemChecker {
     }
   }
 
-  Future<String> _getWindowsDiskInfo() async {
+  static Future<String> _getWindowsDiskInfo() async {
     try {
       final result = await Process.run(
           'wmic', ['logicaldisk', 'get', 'name,filesystem,size,volumename']);
@@ -23,7 +23,7 @@ class FileSystemChecker {
     }
   }
 
-  Future<String> _getUnixDiskInfo() async {
+  static Future<String> _getUnixDiskInfo() async {
     try {
       final result = await Process.run('df', ['-h']);
       return 'Информация о дисках (Unix):\n${result.stdout}';
