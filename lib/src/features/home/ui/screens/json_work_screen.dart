@@ -19,18 +19,20 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
   late final _futureResult =
       ValueNotifier<Future<String>>(Future<String>(() => ''));
 
+  late final json = JsonWorker(jsonFileName: AppConfig.kDefaultJSONFileName);
+
   @override
   void dispose() {
     super.dispose();
     _nameController.dispose();
     _ageController.dispose();
+    _futureResult.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Strings.jsonWorkerScreen),
       ),
       body: Padding(
@@ -39,7 +41,7 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
           child: Column(
             children: [
               const Text(Strings.jsonFields),
-             const SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -66,21 +68,18 @@ class _JsonWorkScreenState extends State<JsonWorkScreen> {
               padding32,
               OutlinedButton(
                   onPressed: () {
-                    _futureResult.value = JsonWorker.createJsonFile(
+                    _futureResult.value = json.createJsonFile(
                       jsonData: {
                         Strings.name: _nameController.text,
                         Strings.age: _ageController.text
                       },
-                      fileName: AppConfig.kDefaultJSONFileName,
                     );
                   },
                   child: const Text(Strings.createFile)),
               padding32,
               OutlinedButton(
                 onPressed: () {
-                  _futureResult.value = JsonWorker.readJsonFile(
-                    fileName: AppConfig.kDefaultJSONFileName,
-                  );
+                  _futureResult.value = json.readJsonFile();
                 },
                 child: const Text(Strings.readFile),
               ),

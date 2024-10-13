@@ -17,4 +17,13 @@ abstract class Strings {
   static const newNestedKeyValue = 'Новое имя вложенного поля';
   static const newValue = 'Новое значение';
   static const changeXmlValue = 'Изменить значения XML';
+  static const zipWorkerScreen = 'Работа с ZIP архивами';
+  static const createZipArchive = 'Создать ZIP архив';
+  static const addFileToZip = 'Добавить файл в архив';
+  static const extractZipArchive = 'Разархивировать';
+  static const deleteFileAndZip = 'Удалить файл и архив';
+  static const fileName = 'Имя файла';
+  static const fileNameHint = 'Введите имя файла';
+  static const extractPath = 'Путь для извлечения';
+  static const extractPathHint = 'Введите путь для извлечения';
 }

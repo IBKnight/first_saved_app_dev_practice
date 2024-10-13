@@ -23,18 +23,22 @@ class _XmlWorkScreenState extends State<XmlWorkScreen> {
 
   String oldName = '';
 
+  late final xml = XmlWorker(xmlFileName: AppConfig.kDefaultXMLFileName);
+
   @override
   void dispose() {
     super.dispose();
     _elementNameController.dispose();
     _valueController.dispose();
+    _newElementNameController.dispose();
+    _newValue.dispose();
+    _futureResult.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Strings.xmlWorkerScreen),
       ),
       body: Padding(
@@ -68,8 +72,7 @@ class _XmlWorkScreenState extends State<XmlWorkScreen> {
               padding32,
               OutlinedButton(
                   onPressed: () {
-                    _futureResult.value = XmlWorker.createXmlFile(
-                        fileName: AppConfig.kDefaultXMLFileName,
+                    _futureResult.value = xml.createXmlFile(
                         rootElementName: AppConfig.kDefaultRootElement,
                         nestedElementName: _elementNameController.text,
                         nestedElementData: _valueController.text);
@@ -79,9 +82,7 @@ class _XmlWorkScreenState extends State<XmlWorkScreen> {
               padding32,
               OutlinedButton(
                 onPressed: () {
-                  _futureResult.value = XmlWorker.readXmlFile(
-                    fileName: AppConfig.kDefaultXMLFileName,
-                  );
+                  _futureResult.value = xml.readXmlFile();
                 },
                 child: const Text(Strings.readFile),
               ),
@@ -92,7 +93,8 @@ class _XmlWorkScreenState extends State<XmlWorkScreen> {
                   const Text(Strings.newNestedKeyValue),
                   const SizedBox(width: 8),
                   CustomTextField(
-                      textController: _newElementNameController, hintText: Strings.newNestedKeyValue),
+                      textController: _newElementNameController,
+                      hintText: Strings.newNestedKeyValue),
                 ],
               ),
               const SizedBox(height: 8),
@@ -108,10 +110,9 @@ class _XmlWorkScreenState extends State<XmlWorkScreen> {
               const SizedBox(height: 8),
               OutlinedButton(
                 onPressed: () {
-                  _futureResult.value = XmlWorker.modifyXmlFile(
+                  _futureResult.value = xml.modifyXmlFile(
                     oldElementName: oldName,
                     newElementName: _newElementNameController.text,
-                    fileName: AppConfig.kDefaultXMLFileName,
                     newValue: _newValue.text,
                   );
                 },

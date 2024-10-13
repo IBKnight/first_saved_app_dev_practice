@@ -3,6 +3,7 @@ import 'package:first_praktice_safed_application/src/features/home/ui/screens/fi
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/file_work_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/json_work_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/screens/xml_work_screen.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/screens/zip_work_screen.dart';
 import 'package:first_praktice_safed_application/src/features/home/ui/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,6 @@ class _MainScreenBodyState extends State<MainScreenBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Strings.appTitle),
       ),
       body: const Center(
@@ -43,6 +43,11 @@ class _MainScreenBodyState extends State<MainScreenBody> {
             NavigateButton(
               buttonTitle: Strings.xmlWorkerScreen,
               screen: XmlWorkScreen(),
+            ),
+            SizedBox(height: 32),
+            NavigateButton(
+              buttonTitle: Strings.zipWorkerScreen,
+              screen: ZipWorkScreen(),
             ),
             SizedBox(height: 32),
           ],

@@ -2,6 +2,7 @@ import 'package:first_praktice_safed_application/src/common/app_config.dart';
 import 'package:first_praktice_safed_application/src/common/paddings.dart';
 import 'package:first_praktice_safed_application/src/common/strings.dart';
 import 'package:first_praktice_safed_application/src/features/home/logic/file_worker.dart';
+import 'package:first_praktice_safed_application/src/features/home/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class FileWorkScreen extends StatefulWidget {
@@ -20,13 +21,13 @@ class _FileWorkScreenState extends State<FileWorkScreen> {
   void dispose() {
     super.dispose();
     _textController.dispose();
+    _futureResult.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Strings.fileWorkerScreen),
       ),
       body: Padding(
@@ -34,16 +35,10 @@ class _FileWorkScreenState extends State<FileWorkScreen> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                width: 200,
-                child: TextField(
-                  controller: _textController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: Strings.enterFileContent,
-                  ),
-                  maxLines: null,
-                ),
+              CustomTextField(
+                textController: _textController,
+                hintText: Strings.enterFileContent,
+                height: null,
               ),
               padding32,
               OutlinedButton(

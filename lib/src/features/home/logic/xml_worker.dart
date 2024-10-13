@@ -5,8 +5,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:xml/xml.dart';
 
 class XmlWorker {
-  static Future<String> createXmlFile({
-    required String fileName,
+  final String xmlFileName;
+
+  XmlWorker({required this.xmlFileName});
+
+  Future<String> createXmlFile({
     required String rootElementName,
     required String nestedElementName,
     required String nestedElementData,
@@ -21,21 +24,21 @@ class XmlWorker {
       });
       final xmlDocument = builder.buildDocument();
 
-      final file = File('${directory.path}/$fileName');
+      final file = File('${directory.path}/$xmlFileName');
       await file.writeAsString(xmlDocument.toXmlString(pretty: true));
-      log('XML файл создан: ${directory.path}/$fileName');
-      return 'XML файл создан: ${directory.path}/$fileName';
+      log('XML файл создан: ${directory.path}/$xmlFileName');
+      return 'XML файл создан: ${directory.path}/$xmlFileName';
     } catch (e, stackTrace) {
       log('e: $e, stackTrace: $stackTrace');
       rethrow;
     }
   }
 
-  static Future<String> readXmlFile({required String fileName}) async {
+  Future<String> readXmlFile() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
 
-      final file = File('${directory.path}/$fileName');
+      final file = File('${directory.path}/$xmlFileName');
 
       if (!(await file.exists())) {
         return 'Файл не найден';
@@ -51,15 +54,14 @@ class XmlWorker {
     }
   }
 
-  static Future<String> modifyXmlFile({
-    required String fileName,
+  Future<String> modifyXmlFile({
     required String oldElementName,
     required String newElementName,
     required String newValue,
   }) async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/$fileName');
+      final file = File('${directory.path}/$xmlFileName');
 
       if (!(await file.exists())) {
         return 'Файл не найден';
@@ -86,8 +88,8 @@ class XmlWorker {
 
       // Записать обновленный XML обратно в файл
       await file.writeAsString(xmlDoc.toXmlString(pretty: true));
-      log('XML файл обновлен: ${directory.path}/$fileName');
-      return 'XML файл обновлен: ${directory.path}/$fileName';
+      log('XML файл обновлен: ${directory.path}/$xmlFileName');
+      return 'XML файл обновлен: ${directory.path}/$xmlFileName';
     } catch (e, stackTrace) {
       log('Ошибка изменения XML файла: $e, $stackTrace');
       return 'Ошибка изменения XML файла: $e';

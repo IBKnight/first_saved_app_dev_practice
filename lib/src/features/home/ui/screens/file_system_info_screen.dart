@@ -9,8 +9,7 @@ class FileSystemInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(Strings.fileSystemScreen),
+                title: const Text(Strings.fileSystemScreen),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

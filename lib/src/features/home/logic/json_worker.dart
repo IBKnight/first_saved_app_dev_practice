@@ -5,22 +5,25 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class JsonWorker {
-  static Future<String> createJsonFile({
-    required String fileName,
+  final String jsonFileName;
+
+  JsonWorker({required this.jsonFileName});
+
+  Future<String> createJsonFile({
     required Map<String, Object?> jsonData,
   }) async {
     final directory = await getApplicationDocumentsDirectory();
-    final path = '${directory.path}/$fileName';
+    final path = '${directory.path}/$jsonFileName';
     final file = File(path);
     await file.writeAsString(jsonEncode(jsonData));
     log('JSON файл создан: $path');
     return 'JSON файл создан: $path';
   }
 
-  static Future<String> readJsonFile({required String fileName}) async {
+  Future<String> readJsonFile() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/$fileName';
+      final path = '${directory.path}/$jsonFileName';
       final file = File(path);
       if (!(await file.exists())) {
         return 'JSON файл не найден: $path';

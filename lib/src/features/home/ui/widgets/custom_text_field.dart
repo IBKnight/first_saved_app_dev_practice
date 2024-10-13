@@ -5,16 +5,19 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required TextEditingController textController,
     required String hintText,
+    double? height = 30,
   })  : _textController = textController,
-        _hintText = hintText;
+        _hintText = hintText,
+        _height = height;
 
   final TextEditingController _textController;
   final String _hintText;
+  final double? _height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30,
+      height: _height,
       width: 250,
       child: TextField(
         controller: _textController,
